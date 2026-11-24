@@ -307,6 +307,32 @@ footer b{color:var(--or)}
 .cart-note{font-size:12.5px;color:var(--texte-doux);margin-bottom:14px;line-height:1.5}
 .cart-foot .btn{width:100%;justify-content:center;padding:15px;font-size:15.5px}
 .cart-foot .btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.variantes{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+.var-btn{border:1.5px solid var(--bordure);background:var(--puce);color:var(--texte);border-radius:999px;
+  padding:6px 12px;font-size:12.5px;font-weight:600;transition:.2s;cursor:pointer;font-family:inherit}
+.var-btn:hover{border-color:var(--rouge)}
+.var-btn.actif{background:var(--rouge);border-color:var(--rouge);color:#fff}
+.photo-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  background:linear-gradient(140deg,var(--puce),var(--surface2));color:var(--texte-doux)}
+.ph-ico{font-size:64px;line-height:1}
+.ph-txt{font-size:12.5px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase}
+.cart-ph{width:66px;height:66px;border-radius:13px;background:var(--puce);display:flex;align-items:center;justify-content:center;font-size:30px;flex:none}
+.cart-foot{max-height:56%;overflow-y:auto}
+.champ{display:block;margin-top:12px}
+.champ span{display:block;font-size:13px;font-weight:600;margin-bottom:5px}
+.champ input{width:100%;padding:11px 13px;border:1.5px solid var(--bordure);border-radius:12px;background:var(--surface);
+  color:var(--texte);font-family:inherit;font-size:14px}
+.champ input:focus{outline:2px solid var(--or);border-color:transparent}
+.champ-label{font-size:13px;font-weight:600;margin-bottom:7px}
+.retrait-choix{display:flex;gap:8px}
+.retrait-btn{flex:1;padding:10px;border-radius:12px;border:1.5px solid var(--bordure);background:var(--surface);
+  color:var(--texte);font-weight:600;font-size:14px;cursor:pointer;transition:.2s;font-family:inherit}
+.retrait-btn.actif{background:var(--rouge);border-color:var(--rouge);color:#fff}
+.cart-liens{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.cart-liens a{font-size:13.5px;font-weight:600;color:var(--texte-doux)}
+.vider-btn{background:none;border:none;font-size:13.5px;font-weight:600;color:var(--texte-doux);cursor:pointer;font-family:inherit;padding:0}
+.vider-btn:hover{color:var(--rouge)}
+.cart-vide .btn{margin-top:14px}
 
 /* Toast */
 .toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,90px);background:#10173c;color:#fff;z-index:400;
@@ -546,12 +572,26 @@ html.anim .reveal.visible{opacity:1;transform:none}
   </div>
   <div class="cart-items" id="cartItems"></div>
   <div class="cart-foot">
-    <div class="cart-total"><span>Total</span><span id="cartTotal">0 FCFA</span></div>
-    <p class="cart-note">La commande est transmise par WhatsApp : elle sera confirmée directement par le restaurant, qui vous indiquera les modalités de livraison.</p>
+    <div id="retraitBloc">
+      <p class="champ-label">Mode de retrait</p>
+      <div class="retrait-choix">
+        <button class="retrait-btn actif" data-retrait="livraison">🛵 Livraison</button>
+        <button class="retrait-btn" data-retrait="emporter">🛍️ À emporter</button>
+      </div>
+      <label class="champ"><span>Votre nom (facultatif)</span><input type="text" id="champNom" placeholder="Ex : Awa Koné" autocomplete="name"></label>
+      <label class="champ" id="champAdresseWrap"><span>Quartier / adresse de livraison</span><input type="text" id="champAdresse" placeholder="Ex : quartier, repère, rue..."></label>
+      <label class="champ"><span>Précisions (facultatif)</span><input type="text" id="champPrecisions" placeholder="Ex : sans piment, heure souhaitée..."></label>
+    </div>
+    <div class="cart-total" style="margin-top:16px"><span>Sous-total</span><span id="cartTotal">0 FCFA</span></div>
+    <p class="cart-note">Hors frais de livraison. Le total définitif vous sera confirmé sur WhatsApp.</p>
     <button class="btn btn-vert" id="orderBtn">
       <svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.3 4 14.9c0 2.6.9 5.1 2.5 7.1L4 29l7.2-2.4a12.4 12.4 0 0 0 4.8 1c6.6 0 12-5.3 12-11.9S22.6 3 16 3zm5.3 14.5c-.3-.1-1.7-.8-2-1-.3-.1-.5-.2-.7.1-.2.4-.8 1-.9 1.2-.2.2-.3.2-.6.1a8 8 0 0 1-4-3.5c-.3-.5.3-.5.7-1.6a.6.6 0 0 0 0-.6c-.1-.1-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1.1 1-1.1 2.7s1.1 3.3 1.3 3.5c.2.2 2.2 3.4 5.4 4.7.8.3 1.4.5 1.8.7.8.2 1.5.2 2 .1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.2-.2-.5-.3z"/></svg>
-      Commander sur WhatsApp
+      Envoyer la commande sur WhatsApp
     </button>
+    <div class="cart-liens">
+      <a href="tel:+2250779696209">📞 Préférer appeler</a>
+      <button class="vider-btn" id="viderBtn">🗑 Vider le panier</button>
+    </div>
   </div>
 </aside>
 
@@ -576,14 +616,23 @@ document.getElementById('aproposImg').src = IMG.poissonBraise;
 const PRODUITS = [
   {id:"nems",          nom:"Nems (3 pièces)",        prix:500,  ancien:1500, cat:"entrees",  img:"nems",         vedette:true, desc:"Rouleaux croustillants et savoureux, 3 à 500 F."},
   {id:"soupe-carpe",   nom:"Soupe de carpe",         prix:3000, ancien:4000, cat:"poisson",  img:"soupeCarpe",   vedette:true, desc:"Carpe fraîche mijotée aux épices locales."},
-  {id:"poulet-roti",   nom:"Poulet rôti",            prix:3000, ancien:4000,  cat:"poulet",   img:"pouletRoti",   vedette:true, desc:"Poulet bien assaisonné et rôti au feu de bois."},
+  {id:"poulet-roti",   nom:"Poulet rôti",            prix:null, ancien:null, cat:"poulet",   img:"pouletRoti",   vedette:true, desc:"Demi-poulet ou poulet entier, bien assaisonné et rôti au feu de bois.",
+    variantes:[{nom:"Demi", suffixe:"demi", prix:3000}, {nom:"Entier", suffixe:"entier", prix:6000}]},
+  {id:"soupe-poulet",  nom:"Soupe de poulet",        prix:null, ancien:null, cat:"poulet",   img:null, ico:"🍲", vedette:true, desc:"Demi-poulet, poulet entier ou la formule « Le Repos ».",
+    variantes:[{nom:"Demi poulet", suffixe:"demi poulet", prix:3000}, {nom:"1 poulet", suffixe:"1 poulet", prix:6000}, {nom:"Le Repos", suffixe:"« Le Repos »", prix:7000}]},
   {id:"poisson-braise",nom:"Poisson braisé au four", prix:3000, ancien:4000, cat:"poisson",  img:"poissonBraise",vedette:true, desc:"Poisson frais braisé, accompagné de ses sauces maison."},
   {id:"poulet-pane",   nom:"Poulet pané",            prix:2000, ancien:3000,  cat:"poulet",   img:"pouletPane",   vedette:true, desc:"Poulet pané croustillant, fondant à l'intérieur."},
   {id:"frites-poulet", nom:"Frites au poulet",       prix:2000, ancien:3000,  cat:"poulet",   img:"frites",       vedette:true, desc:"Frites dorées et poulet grillé savoureux."},
   {id:"riz-soumara",   nom:"Riz au soumara",         prix:3000, ancien:3500,  cat:"riz",      img:"rizSoumara",   vedette:true, desc:"Riz parfumé à la sauce soumara, viande et légumes."},
   {id:"tchep",         nom:"Tchèp",                  prix:1500, ancien:2000,  cat:"riz",      img:"tchep",        vedette:true, desc:"Tchèp généreux au poulet braisé et légumes."},
   {id:"tchep-poisson", nom:"Tchèp au poisson",       prix:1500, ancien:2000,  cat:"riz",      img:"tchepPoisson", vedette:true, desc:"Tchèp parfumé servi avec du poisson."},
-  {id:"pizza-royal",   nom:"Pizza Royal et Jambon",  prix:4000, ancien:4500,  cat:"fastfood", img:"pizza",        vedette:true, desc:"Pizza généreuse au fromage fondant, royal et jambon."}
+  {id:"pizza",         nom:"Pizza",                  prix:null, ancien:null, cat:"fastfood", img:"pizza",        vedette:true, desc:"Pizza gratinée servie dans sa boîte, quatre recettes au choix.",
+    variantes:[{nom:"Royal", prix:4000}, {nom:"Jambon", prix:4000}, {nom:"Bolognaise", prix:2500}, {nom:"Fromage", prix:2500}]},
+  {id:"burgers",       nom:"Burgers",                prix:null, ancien:null, cat:"fastfood", img:null, ico:"🍔", vedette:false, desc:"Deux recettes de la maison au choix.",
+    variantes:[{nom:"Pro Max", prix:null}, {nom:"Frère Sang", prix:null}]},
+  {id:"chawarma",      nom:"Chawarma",               prix:null, ancien:null, cat:"fastfood", img:null, ico:"🥙", vedette:false, desc:"Au poulet ou à la viande.",
+    variantes:[{nom:"Poulet", suffixe:"poulet", prix:1500}, {nom:"Viande", suffixe:"viande", prix:1500}]},
+  {id:"tacos",         nom:"Tacos",                  prix:3000, ancien:null, cat:"fastfood", img:null, ico:"🌮", vedette:false, desc:"Le tacos de la maison."}
 ];
 const parId = id => PRODUITS.find(p => p.id === id);
 const fmt = n => n.toLocaleString("fr-FR").replace(/[\u202f\u00a0]/g, " ") + " FCFA";
@@ -595,11 +644,33 @@ const aucun = document.getElementById('aucunResultat');
 const favoris = new Set();
 let filtreActif = "tous", recherche = "";
 
+const choixVar = {};
 function carteHTML(p, i){
-  const promo = (p.ancien && p.prix) ? Math.round((1 - p.prix/p.ancien) * 100) : 0;
+  const sel = choixVar[p.id] || 0;
+  const vSel = p.variantes ? p.variantes[sel] : null;
+  const promo = (!p.variantes && p.ancien && p.prix) ? Math.round((1 - p.prix/p.ancien) * 100) : 0;
+  const photo = p.img
+    ? `<img src="${IMG[p.img]}" alt="${p.nom}" loading="lazy">`
+    : `<div class="photo-ph"><span class="ph-ico">${p.ico || "🍽️"}</span><span class="ph-txt">Photo à venir</span></div>`;
+  let bas;
+  if (p.variantes) {
+    const pills = p.variantes.map((v, vi) => `<button class="var-btn ${vi === sel ? "actif" : ""}" data-var="${p.id}" data-vi="${vi}">${v.nom}${v.prix !== null ? " · " + fmt(v.prix) : ""}</button>`).join("");
+    const prixZone = vSel.prix !== null
+      ? `<span class="prix-actuel">${fmt(vSel.prix)}</span>`
+      : `<span class="prix-demande">Prix sur demande</span>`;
+    bas = `<div class="variantes" role="group" aria-label="Choisir une option pour ${p.nom}">${pills}</div>
+      <div class="prix-ligne">${prixZone}</div>
+      <button class="btn-ajout" data-ajout="${p.id}"><svg viewBox="0 0 24 24"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM3 2h3l2.6 12.4A2 2 0 0 0 10.6 16h7.9a2 2 0 0 0 2-1.6L22 6H6.2L5.6 3.4A1 1 0 0 0 4.6 2.6H3V2z"/></svg>Ajouter au panier</button>`;
+  } else if (p.prix !== null) {
+    bas = `<div class="prix-ligne"><span class="prix-actuel">${fmt(p.prix)}</span>${p.ancien ? `<span class="prix-barre">${fmt(p.ancien)}</span>` : ""}</div>
+      <button class="btn-ajout" data-ajout="${p.id}"><svg viewBox="0 0 24 24"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM3 2h3l2.6 12.4A2 2 0 0 0 10.6 16h7.9a2 2 0 0 0 2-1.6L22 6H6.2L5.6 3.4A1 1 0 0 0 4.6 2.6H3V2z"/></svg>Ajouter au panier</button>`;
+  } else {
+    bas = `<div class="prix-ligne"><span class="prix-demande">Prix sur demande</span></div>
+      <button class="btn-ajout demande" data-demande="${p.id}"><svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.3 4 14.9c0 2.6.9 5.1 2.5 7.1L4 29l7.2-2.4a12.4 12.4 0 0 0 4.8 1c6.6 0 12-5.3 12-11.9S22.6 3 16 3z"/></svg>Demander le prix sur WhatsApp</button>`;
+  }
   return `<article class="carte reveal" style="transition-delay:${Math.min(i || 0, 8) * 70}ms" data-id="${p.id}">
     <div class="photo">
-      <img src="${IMG[p.img]}" alt="${p.nom}" loading="lazy">
+      ${photo}
       ${promo ? `<span class="badge-promo">-${promo}%</span>` : ""}
       ${p.vedette ? `<span class="badge-pop">⭐ Vedette</span>` : ""}
       <button class="fav-btn ${favoris.has(p.id) ? "on" : ""}" data-fav="${p.id}" aria-label="Ajouter ${p.nom} aux favoris">
@@ -609,11 +680,7 @@ function carteHTML(p, i){
     <div class="corps">
       <h3>${p.nom}</h3>
       <p class="desc">${p.desc}</p>
-      ${p.prix !== null
-        ? `<div class="prix-ligne"><span class="prix-actuel">${fmt(p.prix)}</span>${p.ancien ? `<span class="prix-barre">${fmt(p.ancien)}</span>` : ""}</div>
-           <button class="btn-ajout" data-ajout="${p.id}"><svg viewBox="0 0 24 24"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM3 2h3l2.6 12.4A2 2 0 0 0 10.6 16h7.9a2 2 0 0 0 2-1.6L22 6H6.2L5.6 3.4A1 1 0 0 0 4.6 2.6H3V2z"/></svg>Ajouter au panier</button>`
-        : `<div class="prix-ligne"><span class="prix-demande">Prix sur demande</span></div>
-           <button class="btn-ajout demande" data-demande="${p.id}"><svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.3 4 14.9c0 2.6.9 5.1 2.5 7.1L4 29l7.2-2.4a12.4 12.4 0 0 0 4.8 1c6.6 0 12-5.3 12-11.9S22.6 3 16 3z"/></svg>Demander le prix sur WhatsApp</button>`}
+      ${bas}
     </div>
   </article>`;
 }
@@ -622,7 +689,7 @@ function afficher(){
   const q = sansAccents(recherche.trim());
   const liste = PRODUITS.filter(p => {
     const okFiltre = filtreActif === "tous" || p.cat === filtreActif || (filtreActif === "specialites" && p.vedette);
-    const okRecherche = !q || sansAccents(p.nom + " " + p.desc).includes(q);
+    const okRecherche = !q || sansAccents(p.nom + " " + p.desc + " " + (p.variantes ? p.variantes.map(v => v.nom).join(" ") : "")).includes(q);
     return okFiltre && okRecherche;
   });
   grille.innerHTML = liste.map(carteHTML).join("");
@@ -649,6 +716,18 @@ document.getElementById('filtres').addEventListener('click', e => {
 
 /* Clics cartes : ajout panier, favoris, demande de prix */
 grille.addEventListener('click', e => {
+  const vb = e.target.closest('[data-var]');
+  if (vb) {
+    const id = vb.dataset.var, vi = +vb.dataset.vi;
+    choixVar[id] = vi;
+    const carte = vb.closest('.carte');
+    carte.querySelectorAll('.var-btn').forEach(b => b.classList.toggle('actif', +b.dataset.vi === vi));
+    const v = parId(id).variantes[vi];
+    carte.querySelector('.prix-ligne').innerHTML = v.prix !== null
+      ? `<span class="prix-actuel">${fmt(v.prix)}</span>`
+      : `<span class="prix-demande">Prix sur demande</span>`;
+    return;
+  }
   const ajout = e.target.closest('[data-ajout]');
   if (ajout) { ajouterAuPanier(ajout.dataset.ajout); return; }
   const fav = e.target.closest('[data-fav]');
@@ -697,7 +776,21 @@ searchInput.addEventListener('keydown', e => { if (e.key === "Escape") fermerRec
 /* ---------- Panier ---------- */
 let panier = {};
 try { panier = JSON.parse(localStorage.getItem("mk_panier") || "{}"); } catch(e) { panier = {}; }
-Object.keys(panier).forEach(id => { if (!parId(id) || parId(id).prix === null) delete panier[id]; });
+if (!panier || typeof panier !== "object") panier = {};
+
+function resoudre(cle){
+  const parts = String(cle).split("|");
+  const p = parId(parts[0]);
+  if (!p) return null;
+  if (p.variantes) {
+    const v = p.variantes[parseInt(parts[1] || "0", 10)];
+    if (!v) return null;
+    return { p, v, prix: v.prix };
+  }
+  return { p, v: null, prix: p.prix };
+}
+function nomComplet(r){ return r.v ? `${r.p.nom} ${r.v.suffixe || r.v.nom}` : r.p.nom; }
+Object.keys(panier).forEach(cle => { if (!resoudre(cle) || typeof panier[cle] !== "number") delete panier[cle]; });
 
 const drawer = document.getElementById('cartDrawer');
 const overlay = document.getElementById('cartOverlay');
@@ -708,8 +801,16 @@ document.getElementById('cartClose').addEventListener('click', fermerPanier);
 overlay.addEventListener('click', fermerPanier);
 document.addEventListener('keydown', e => { if (e.key === "Escape") { fermerPanier(); fermerRecherche(); fermerMenuMobile(); } });
 
+let modeRetrait = "livraison";
+document.querySelectorAll('[data-retrait]').forEach(b => b.addEventListener('click', () => {
+  modeRetrait = b.dataset.retrait;
+  document.querySelectorAll('[data-retrait]').forEach(x => x.classList.toggle('actif', x === b));
+  document.getElementById('champAdresseWrap').style.display = modeRetrait === "livraison" ? "" : "none";
+}));
+
 function totalArticles(){ return Object.values(panier).reduce((a,b) => a+b, 0); }
-function totalPrix(){ return Object.entries(panier).reduce((s,[id,q]) => s + parId(id).prix*q, 0); }
+function totalPrix(){ return Object.entries(panier).reduce((s,[cle,q]) => { const r = resoudre(cle); return s + (r && r.prix !== null ? r.prix*q : 0); }, 0); }
+function aSurDemande(){ return Object.keys(panier).some(cle => { const r = resoudre(cle); return r && r.prix === null; }); }
 
 function majPanier(){
   const n = totalArticles();
@@ -718,35 +819,43 @@ function majPanier(){
   document.getElementById('cartHeadCount').textContent = n ? `(${n})` : "";
   const zone = document.getElementById('cartItems');
   if (!n) {
-    zone.innerHTML = `<div class="cart-vide"><div class="gros">🛒</div>Votre panier est vide.<br>Ajoutez vos plats préférés depuis le menu !</div>`;
+    zone.innerHTML = `<div class="cart-vide"><div class="gros">🛒</div>Votre panier est vide.<br>Parcourez le menu et ajoutez vos plats préférés.<br><button class="btn btn-rouge" id="videMenuBtn">Voir le menu</button></div>`;
   } else {
-    zone.innerHTML = Object.entries(panier).map(([id,q]) => {
-      const p = parId(id);
+    zone.innerHTML = Object.entries(panier).map(([cle,q]) => {
+      const r = resoudre(cle);
+      if (!r) return "";
+      const visuel = r.p.img ? `<img src="${IMG[r.p.img]}" alt="${r.p.nom}">` : `<div class="cart-ph">${r.p.ico || "🍽️"}</div>`;
       return `<div class="cart-item">
-        <img src="${IMG[p.img]}" alt="${p.nom}">
+        ${visuel}
         <div class="infos">
-          <h4>${p.nom}</h4>
-          <div class="unit">${fmt(p.prix)} / pièce</div>
+          <h4>${nomComplet(r)}</h4>
+          <div class="unit">${r.prix !== null ? fmt(r.prix) + " l'unité" : "Prix sur demande"}</div>
           <div class="ligne-bas">
             <div class="qty">
-              <button data-moins="${id}" aria-label="Diminuer la quantité">−</button><b>${q}</b><button data-plus="${id}" aria-label="Augmenter la quantité">+</button>
+              <button data-moins="${cle}" aria-label="Diminuer la quantité">−</button><b>${q}</b><button data-plus="${cle}" aria-label="Augmenter la quantité">+</button>
             </div>
-            <span class="sous-total">${fmt(p.prix*q)}</span>
+            <span class="sous-total">${r.prix !== null ? fmt(r.prix*q) : "À confirmer"}</span>
           </div>
-          <button class="remove-btn" data-retirer="${id}">🗑 Retirer du panier</button>
+          <button class="remove-btn" data-retirer="${cle}">🗑 Retirer du panier</button>
         </div>
       </div>`;
     }).join("");
   }
   document.getElementById('cartTotal').textContent = fmt(totalPrix());
   document.getElementById('orderBtn').disabled = !n;
+  document.getElementById('retraitBloc').style.display = n ? "" : "none";
+  document.getElementById('viderBtn').style.display = n ? "" : "none";
+  document.querySelector('.cart-note').textContent = aSurDemande()
+    ? "Certains articles sont à prix sur demande : leur prix sera confirmé sur WhatsApp. Hors frais de livraison."
+    : "Hors frais de livraison. Le total définitif vous sera confirmé sur WhatsApp.";
   try { localStorage.setItem("mk_panier", JSON.stringify(panier)); } catch(e) {}
 }
 document.getElementById('cartItems').addEventListener('click', e => {
+  if (e.target.closest('#videMenuBtn')) { fermerPanier(); document.getElementById('menu').scrollIntoView({ behavior: "smooth" }); return; }
   const plus = e.target.closest('[data-plus]'), moins = e.target.closest('[data-moins]'), ret = e.target.closest('[data-retirer]');
   if (plus) panier[plus.dataset.plus]++;
-  else if (moins) { const id = moins.dataset.moins; panier[id]--; if (panier[id] <= 0) delete panier[id]; }
-  else if (ret) delete panier[ret.dataset.retirer];
+  else if (moins) { const cle = moins.dataset.moins; panier[cle]--; if (panier[cle] <= 0) delete panier[cle]; }
+  else if (ret) { const r = resoudre(ret.dataset.retirer); delete panier[ret.dataset.retirer]; if (r) showToast(`« ${nomComplet(r)} » retiré du panier`); }
   else return;
   majPanier();
 });
@@ -760,21 +869,36 @@ function showToast(msg){
   toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
 }
 function ajouterAuPanier(id){
-  panier[id] = (panier[id] || 0) + 1;
+  const p = parId(id);
+  const vi = p.variantes ? (choixVar[id] || 0) : -1;
+  const cle = id + "|" + vi;
+  panier[cle] = (panier[cle] || 0) + 1;
   majPanier();
   const badge = document.getElementById('cartCount');
   badge.classList.remove('bump'); void badge.offsetWidth; badge.classList.add('bump');
-  showToast(`${parId(id).nom} ajouté au panier 🛒`);
+  showToast(`« ${nomComplet(resoudre(cle))} » ajouté au panier`);
 }
 
-/* Commande WhatsApp : message généré, aucune fausse confirmation */
+document.getElementById('viderBtn').addEventListener('click', () => {
+  if (!totalArticles()) return;
+  if (confirm("Vider le panier ?")) { panier = {}; majPanier(); showToast("Panier vidé"); }
+});
+
+/* Commande WhatsApp : message généré avec les infos du formulaire, aucune fausse confirmation */
 document.getElementById('orderBtn').addEventListener('click', () => {
   if (!totalArticles()) return;
-  const lignes = Object.entries(panier).map(([id,q]) => {
-    const p = parId(id);
-    return `* ${q} × ${p.nom} (${fmt(p.prix)})`;
+  const lignes = Object.entries(panier).map(([cle,q]) => {
+    const r = resoudre(cle);
+    return `* ${q} × ${nomComplet(r)}${r.prix !== null ? ` (${fmt(r.prix)})` : " (prix à confirmer)"}`;
   });
-  const msg = `Bonjour Les Délices de Maman Koro !\n\nJe souhaite passer une commande :\n\n${lignes.join("\n")}\n\nTotal : ${fmt(totalPrix())}.\n\nMerci de confirmer ma commande et de m'indiquer les modalités de livraison.`;
+  const infos = [`Mode de retrait : ${modeRetrait === "livraison" ? "Livraison" : "À emporter"}`];
+  const nom = document.getElementById('champNom').value.trim();
+  const adr = document.getElementById('champAdresse').value.trim();
+  const prec = document.getElementById('champPrecisions').value.trim();
+  if (nom) infos.push(`Nom : ${nom}`);
+  if (modeRetrait === "livraison" && adr) infos.push(`Adresse de livraison : ${adr}`);
+  if (prec) infos.push(`Précisions : ${prec}`);
+  const msg = `Bonjour Les Délices de Maman Koro !\n\nJe souhaite passer une commande :\n\n${lignes.join("\n")}\n\nSous-total : ${fmt(totalPrix())}\n${infos.join("\n")}\n\nMerci de confirmer ma commande${modeRetrait === "livraison" ? " et de m'indiquer les frais de livraison" : ""}.`;
   window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
 });
 majPanier();
