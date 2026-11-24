@@ -37,8 +37,9 @@ button{font-family:inherit;cursor:pointer}
 :focus-visible{outline:3px solid var(--or);outline-offset:2px}
 
 /* ============ NAVIGATION ============ */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(6,10,36,.96);backdrop-filter:blur(12px);
-    border-bottom:1px solid rgba(251,94,138,.25);color:#eef1ff}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:transparent;
+    border-bottom:1px solid transparent;color:#eef1ff;transition:background .35s,border-color .35s}
+nav.defile{background:rgba(6,10,36,.96);backdrop-filter:blur(12px);border-bottom-color:rgba(251,94,138,.25)}
 .nav-in{max-width:1220px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:10px 18px}
 .logo{line-height:1.02;flex:none;display:flex;align-items:center;gap:11px}
 .logo-img{width:46px;height:46px;border-radius:50%;border:2px solid var(--or);object-fit:cover;flex:none}
@@ -1013,6 +1014,12 @@ const hvCarte = document.getElementById('hvCarte');
 hvCarte.addEventListener('pointerenter', () => clearInterval(hvTimer));
 hvCarte.addEventListener('pointerleave', hvRelancer);
 hvRelancer();
+
+/* ---------- Navigation : barre transparente en haut, bleu nuit au défilement ---------- */
+const barreNav = document.querySelector('nav');
+function majBarre(){ barreNav.classList.toggle('defile', window.scrollY > 30); }
+window.addEventListener('scroll', majBarre, { passive: true });
+majBarre();
 
 /* ---------- Navigation : menu mobile, bouton Appeler ---------- */
 const navLinks = document.getElementById('navLinks');
