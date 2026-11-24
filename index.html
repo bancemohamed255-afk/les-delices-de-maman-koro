@@ -12,8 +12,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --noir:#0a1030; --noir2:#141c4e; --rouge:#e8382f; --rouge2:#c2241c;
-  --or:#7d94ff; --or2:#b9c8ff; --creme:#f2f5ff; --blanc:#ffffff;
+  --noir:#0a1030; --noir2:#141c4e; --rouge:#f43f5e; --rouge2:#cf2350;
+  --or:#fb5e8a; --or2:#ffa4c0; --creme:#f2f5ff; --blanc:#ffffff;
   --texte-sombre:#131a3d; --muted-sombre:#4d587f; --vert:#22b358; --vert2:#1a9448;
   --ombre:0 10px 30px rgba(13,20,64,.12); --ombre-forte:0 22px 48px rgba(13,20,64,.22);
   --rayon:20px;
@@ -22,7 +22,7 @@
 }
 html[data-theme="sombre"]{
   --fond:#070d29; --surface:#10173c; --surface2:#161f52; --texte:#ffffff; --texte-doux:#aeb9e8;
-  --bordure:#2b3677; --bordure-claire:#232c63; --puce:#1b2456; --survol:rgba(232,56,47,.2);
+  --bordure:#2b3677; --bordure-claire:#232c63; --puce:#1b2456; --survol:rgba(244,63,94,.22);
   --ombre:0 10px 30px rgba(0,0,0,.45); --ombre-forte:0 22px 48px rgba(0,0,0,.65);
 }
 .ico-soleil{display:none}
@@ -38,7 +38,7 @@ button{font-family:inherit;cursor:pointer}
 
 /* ============ NAVIGATION ============ */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,12,38,.94);backdrop-filter:blur(12px);
-    border-bottom:1px solid rgba(125,148,255,.35);color:#eef1ff}
+    border-bottom:1px solid rgba(251,94,138,.35);color:#eef1ff}
 .nav-in{max-width:1220px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:10px 18px}
 .logo{line-height:1.02;flex:none;display:flex;align-items:center;gap:11px}
 .logo-img{width:46px;height:46px;border-radius:50%;border:2px solid var(--or);object-fit:cover;flex:none}
@@ -48,7 +48,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,12,38,.94)
 .nav-links a{opacity:.88;padding:6px 2px;border-bottom:2px solid transparent;transition:.25s}
 .nav-links a:hover{opacity:1;color:var(--or);border-color:var(--rouge)}
 .nav-actions{display:flex;align-items:center;gap:9px;flex:none}
-.icon-btn{position:relative;background:rgba(255,255,255,.08);border:1px solid rgba(125,148,255,.4);color:#fff;
+.icon-btn{position:relative;background:rgba(255,255,255,.08);border:1px solid rgba(251,94,138,.4);color:#fff;
   width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.25s}
 .icon-btn:hover{background:var(--rouge);transform:translateY(-2px)}
 .icon-btn svg{width:20px;height:20px;fill:#fff}
@@ -60,11 +60,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,12,38,.94)
 .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;font-weight:700;font-size:14.5px;
   border:none;transition:transform .25s,box-shadow .25s,background .25s;white-space:nowrap}
 .btn svg{width:17px;height:17px;fill:#fff;flex:none}
-.btn-rouge{background:var(--rouge);color:#fff;box-shadow:0 8px 22px rgba(217,35,35,.38)}
+.btn-rouge{background:var(--rouge);color:#fff;box-shadow:0 8px 22px rgba(244,63,94,.38)}
 .btn-rouge:hover{background:var(--rouge2);transform:translateY(-2px)}
 .btn-vert{background:var(--vert);color:#fff;box-shadow:0 8px 22px rgba(34,179,88,.35)}
 .btn-vert:hover{background:var(--vert2);transform:translateY(-2px)}
-.btn-or{background:var(--or);color:#0a1030;box-shadow:0 8px 22px rgba(125,148,255,.4)}
+.btn-or{background:var(--or);color:#0a1030;box-shadow:0 8px 22px rgba(251,94,138,.4)}
 .btn-or:hover{transform:translateY(-2px)}
 .btn-nav{padding:10px 17px;font-size:13.5px}
 .call-wrap{position:relative}
@@ -93,11 +93,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,12,38,.94)
     transition:transform .38s cubic-bezier(.32,.72,.28,1);border-right:2px solid var(--rouge);z-index:205;
     box-shadow:24px 0 50px rgba(0,0,0,.35)}
   .nav-links.open{transform:none}
-  .nav-links a{padding:13px 6px;font-size:17px;border-bottom:1px solid rgba(125,148,255,.18)}
+  .nav-links a{padding:13px 6px;font-size:17px;border-bottom:1px solid rgba(251,94,138,.18)}
   .nav-actions .call-wrap{display:none}
   .logo .l1{display:none}
   .logo .l2{font-size:23px}
-  .panel-actions{display:flex;flex-direction:column;gap:10px;margin-top:16px;padding-top:18px;border-top:1px solid rgba(125,148,255,.28)}
+  .panel-actions{display:flex;flex-direction:column;gap:10px;margin-top:16px;padding-top:18px;border-top:1px solid rgba(251,94,138,.28)}
   .panel-actions .btn{justify-content:center;padding:13px 16px;font-size:14.5px}
   .burger-btn{display:flex}
   .nav-in{gap:8px;padding:9px 12px}
@@ -132,7 +132,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,12,38,.94)
 .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease}
 .slide.active{opacity:1}
 .slide img{width:100%;height:100%;object-fit:cover;animation:kenburns 7s ease both}
-.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,8,28,.9) 0%,rgba(5,8,28,.64) 46%,rgba(5,8,28,.3) 100%)}
+.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,8,28,.92) 0%,rgba(20,13,56,.66) 52%,rgba(74,18,66,.36) 100%)}
 @keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.09)}}
 .hero-content{position:relative;z-index:3;max-width:860px}
 .hero .sur{letter-spacing:3.5px;font-size:12.5px;font-weight:700;color:var(--or2);text-transform:uppercase}
@@ -145,7 +145,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,12,38,.94)
 .hero .slogan em{color:var(--or2)}
 .hero p.desc{color:#e8d9c3;max-width:580px;margin:0 auto 26px;font-size:16px}
 .hero-atouts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
-.hero-atouts span{background:rgba(255,255,255,.1);border:1px solid rgba(125,148,255,.5);padding:8px 15px;border-radius:999px;font-size:13.5px;font-weight:600}
+.hero-atouts span{background:rgba(255,255,255,.1);border:1px solid rgba(251,94,138,.5);padding:8px 15px;border-radius:999px;font-size:13.5px;font-weight:600}
 .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .hero-btns .btn{padding:15px 27px;font-size:15.5px}
 .slide-dots{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:4;display:flex;gap:9px}
@@ -156,9 +156,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,12,38,.94)
 .hero-wave path{fill:var(--fond)}
 
 /* ============ MARQUEE ============ */
-.marquee{background:var(--rouge);color:#fff;overflow:hidden;white-space:nowrap;padding:11px 0;font-weight:800;letter-spacing:.6px;font-size:14.5px}
-.marquee div{display:inline-block;animation:defile 28s linear infinite}
-.marquee span{margin:0 24px}
+.partenaires{background:linear-gradient(120deg,#080d2b,#17124a 55%,#33104a);color:#fff;text-align:center;
+  padding:36px 0 32px;overflow:hidden}
+.part-script{font-family:'Dancing Script',cursive;font-size:31px;color:var(--or);line-height:1.1}
+.part-titre{font-size:12.5px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:#eef1ff;margin:6px 16px 22px}
+.marquee{overflow:hidden;white-space:nowrap;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.marquee-track{display:inline-flex;animation:defile 30s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.serie{display:flex;gap:14px;padding-right:14px}
+.pastille{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:11px 22px;font-weight:600;font-size:14.5px;white-space:nowrap}
 @keyframes defile{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ============ SECTIONS ============ */
@@ -220,11 +228,11 @@ section{padding:74px 20px}
 #apropos .titre h2{color:#fff}
 #apropos .titre p{color:#aeb9e8}
 .apropos-grid{display:grid;grid-template-columns:1fr 1fr;gap:38px;align-items:center}
-.apropos-grid img{border-radius:24px;box-shadow:0 26px 54px rgba(0,0,0,.55);border:1px solid rgba(125,148,255,.35);height:100%;object-fit:cover}
+.apropos-grid img{border-radius:24px;box-shadow:0 26px 54px rgba(0,0,0,.55);border:1px solid rgba(251,94,138,.35);height:100%;object-fit:cover}
 .apropos-txt h3{font-family:'Dancing Script',cursive;font-size:36px;color:var(--or);margin-bottom:12px}
 .apropos-txt p{color:#e2d2b8;line-height:1.75;margin-bottom:14px;font-size:15.5px}
 .apropos-chiffres{display:flex;gap:14px;flex-wrap:wrap;margin-top:20px}
-.apropos-chiffres div{background:rgba(255,255,255,.06);border:1px solid rgba(125,148,255,.35);border-radius:16px;padding:14px 18px;text-align:center;flex:1;min-width:104px}
+.apropos-chiffres div{background:rgba(255,255,255,.06);border:1px solid rgba(251,94,138,.35);border-radius:16px;padding:14px 18px;text-align:center;flex:1;min-width:104px}
 .apropos-chiffres b{display:block;font-size:23px;color:var(--or)}
 .apropos-chiffres span{font-size:12.5px;color:#aeb9e8}
 @media(max-width:820px){.apropos-grid{grid-template-columns:1fr}}
@@ -412,10 +420,11 @@ html.anim .reveal.visible{opacity:1;transform:none}
   <div class="hero-wave" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,60 480,4 720,20 C960,36 1200,58 1440,26 L1440,60 L0,60 Z"/></svg></div>
 </header>
 
-<div class="marquee" aria-hidden="true"><div>
-  <span>🍕 PIZZA ROYAL ET JAMBON 4 000 F</span><span>🐟 POISSON BRAISÉ 3 000 F</span><span>🍗 POULET RÔTI 3 000 F</span><span>🍚 TCHÈP 1 500 F</span><span>🥟 NEMS 500 F</span><span>🛵 LIVRAISON POSSIBLE</span>
-  <span>🍕 PIZZA ROYAL ET JAMBON 4 000 F</span><span>🐟 POISSON BRAISÉ 3 000 F</span><span>🍗 POULET RÔTI 3 000 F</span><span>🍚 TCHÈP 1 500 F</span><span>🥟 NEMS 500 F</span><span>🛵 LIVRAISON POSSIBLE</span>
-</div></div>
+<section class="partenaires" aria-label="Nos spécialités">
+  <p class="part-script">Nos spécialités</p>
+  <p class="part-titre">Des plats faits maison, préparés avec amour par Maman Koro</p>
+  <div class="marquee" aria-hidden="true"><div class="marquee-track"><div class="serie"><span class="pastille">🍕 Pizza Royal et Jambon · 4 000 F</span><span class="pastille">🐟 Poisson braisé au four · 3 000 F</span><span class="pastille">🍗 Poulet rôti · 3 000 F</span><span class="pastille">🍚 Tchèp · 1 500 F</span><span class="pastille">🥟 Nems · 500 F</span><span class="pastille">🛵 Livraison possible</span></div><div class="serie"><span class="pastille">🍕 Pizza Royal et Jambon · 4 000 F</span><span class="pastille">🐟 Poisson braisé au four · 3 000 F</span><span class="pastille">🍗 Poulet rôti · 3 000 F</span><span class="pastille">🍚 Tchèp · 1 500 F</span><span class="pastille">🥟 Nems · 500 F</span><span class="pastille">🛵 Livraison possible</span></div></div></div>
+</section>
 
 <!-- ================= MENU ================= -->
 <section id="menu">
