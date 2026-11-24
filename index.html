@@ -126,38 +126,69 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,12,38,.94)
 .search-info{max-width:760px;margin:10px auto 0;font-size:13.5px;color:#eef1ff;text-shadow:0 1px 6px rgba(0,0,0,.65);text-align:center;min-height:18px}
 
 /* ============ HERO / DIAPORAMA ============ */
-.hero{position:relative;min-height:94vh;display:flex;align-items:center;justify-content:center;text-align:center;
-  padding:130px 20px 90px;background:#060a24;color:#fff;overflow:hidden}
-.slides{position:absolute;inset:0}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease}
-.slide.active{opacity:1}
-.slide img{width:100%;height:100%;object-fit:cover;animation:kenburns 7s ease both}
-.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,8,28,.92) 0%,rgba(20,13,56,.66) 52%,rgba(74,18,66,.36) 100%)}
-@keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.09)}}
-.hero-content{position:relative;z-index:3;max-width:860px}
+.hero{position:relative;padding:132px 20px 96px;color:#fff;overflow:hidden;
+  background:linear-gradient(140deg,#060a24 0%,#141050 55%,#3a1145 100%)}
+.hero-in{position:relative;z-index:3;display:grid;grid-template-columns:1.05fr .95fr;gap:46px;align-items:center;
+  max-width:1180px;margin:0 auto}
+.hero-content{position:relative;text-align:left;max-width:600px}
 .hero .sur{letter-spacing:3.5px;font-size:12.5px;font-weight:700;color:var(--or2);text-transform:uppercase}
-.hero h1{font-size:clamp(40px,8.5vw,76px);line-height:1.04;font-weight:900;margin:14px 0 2px}
-.hero h1 .script{display:block;font-family:'Dancing Script',cursive;font-weight:700;font-size:clamp(52px,10.5vw,96px);
+.hero h1{font-size:clamp(40px,6.5vw,68px);line-height:1.04;font-weight:900;margin:14px 0 2px}
+.hero h1 .script{display:block;font-family:'Dancing Script',cursive;font-weight:700;font-size:clamp(52px,8.5vw,88px);
   background:linear-gradient(90deg,var(--or),var(--or2),var(--or));background-size:200% auto;-webkit-background-clip:text;
   background-clip:text;-webkit-text-fill-color:transparent;animation:brille 4s linear infinite}
 @keyframes brille{to{background-position:200% center}}
-.hero .slogan{font-size:clamp(18px,3.4vw,26px);font-weight:600;margin:10px 0 8px}
+.hero .slogan{font-size:clamp(18px,3vw,25px);font-weight:600;margin:10px 0 8px}
 .hero .slogan em{color:var(--or2)}
-.hero p.desc{color:#e8d9c3;max-width:580px;margin:0 auto 26px;font-size:16px}
-.hero-atouts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
+.hero p.desc{color:#e6e2f5;max-width:580px;margin:0 0 26px;font-size:16px;line-height:1.6}
+.hero-atouts{display:flex;gap:10px;justify-content:flex-start;flex-wrap:wrap;margin-bottom:30px}
 .hero-atouts span{background:rgba(255,255,255,.1);border:1px solid rgba(251,94,138,.5);padding:8px 15px;border-radius:999px;font-size:13.5px;font-weight:600}
-.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.hero-btns{display:flex;gap:12px;justify-content:flex-start;flex-wrap:wrap}
 .hero-btns .btn{padding:15px 27px;font-size:15.5px}
+.hero-tel{margin-top:17px;font-size:14.5px;color:#cfd6ff}
+.hero-tel a{color:var(--or2);font-weight:800}
 .hero-stats{display:flex;flex-wrap:wrap;justify-content:center;background:rgba(255,255,255,.09);
   border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  border-radius:20px;padding:16px 8px;margin-top:32px}
+  border-radius:20px;padding:16px 8px;margin:46px auto 0;max-width:1180px;position:relative;z-index:3}
 .hstat{flex:1 1 118px;text-align:center;padding:4px 8px}
 .hstat b{display:block;font-size:26px;font-weight:800;color:#fff;line-height:1.15}
 .hstat>span{font-size:10.5px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:var(--or2)}
 @media(min-width:641px){.hstat + .hstat{border-left:1px solid rgba(255,255,255,.16)}}
-.slide-dots{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:4;display:flex;gap:9px}
-.slide-dots button{width:11px;height:11px;border-radius:50%;border:2px solid rgba(255,255,255,.75);background:transparent;padding:0;transition:.3s}
-.slide-dots button.active{background:var(--or);border-color:var(--or);transform:scale(1.25)}
+/* Carte plat vedette (à droite du hero) */
+.hero-visuel{position:relative;z-index:3}
+.hv-carte{position:relative;height:480px}
+.hv-carte::before,.hv-carte::after{content:"";position:absolute;inset:0;border-radius:28px}
+.hv-carte::before{background:var(--rouge);transform:rotate(3deg) translate(10px,-6px);opacity:.85}
+.hv-carte::after{background:#2a1e6e;transform:rotate(-2.5deg) translate(-10px,8px)}
+.hv-slides{position:absolute;inset:0;border-radius:28px;overflow:hidden;border:3px solid rgba(255,255,255,.9);
+  box-shadow:0 30px 60px rgba(0,0,0,.45);z-index:1;background:#10173c}
+.hv-slide{position:absolute;inset:0;opacity:0;transition:opacity .8s ease}
+.hv-slide.actif{opacity:1}
+.hv-slide img{width:100%;height:100%;object-fit:cover}
+.hv-cat{position:absolute;top:14px;left:14px;background:var(--rouge);color:#fff;font-size:11px;font-weight:800;
+  letter-spacing:1.2px;padding:5px 11px;border-radius:999px;z-index:2}
+.hv-infos{position:absolute;left:0;right:0;bottom:0;padding:46px 18px 16px;color:#fff;z-index:2;
+  background:linear-gradient(transparent,rgba(5,8,25,.85))}
+.hv-bas{display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+.hv-bas h3{font-size:21px;font-weight:800;line-height:1.2}
+.hv-voir{font-size:13px;font-weight:600;color:var(--or2)}
+.hv-prix{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.45);backdrop-filter:blur(4px);
+  padding:6px 12px;border-radius:999px;font-weight:700;font-size:13.5px;white-space:nowrap}
+.hv-nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:18px}
+.hv-arrow{width:42px;height:42px;border-radius:50%;border:1.5px solid rgba(255,255,255,.5);background:rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s;padding:0}
+.hv-arrow svg{width:20px;height:20px;fill:#fff}
+.hv-arrow:hover{background:var(--rouge);border-color:var(--rouge)}
+.hv-dots{display:flex;gap:8px}
+.hv-dots button{width:9px;height:9px;border-radius:999px;border:none;background:rgba(255,255,255,.35);padding:0;transition:.3s;cursor:pointer}
+.hv-dots button.actif{background:var(--or);width:26px}
+@media(max-width:920px){
+  .hero{padding:112px 16px 84px}
+  .hero-in{grid-template-columns:1fr;gap:36px}
+  .hero-content{text-align:center;margin:0 auto}
+  .hero-atouts,.hero-btns{justify-content:center}
+  .hero p.desc{margin:0 auto 26px}
+  .hv-carte{height:350px;max-width:520px;margin:0 auto}
+}
 .hero-wave{position:absolute;bottom:-2px;left:0;right:0;z-index:2;line-height:0}
 .hero-wave svg{width:100%;height:56px;display:block}
 .hero-wave path{fill:var(--fond)}
@@ -433,33 +464,44 @@ html.anim .reveal.visible{opacity:1;transform:none}
 
 <!-- ================= HERO ================= -->
 <header class="hero" id="accueil">
-  <div class="slides" id="slides" aria-hidden="true"></div>
-  <div class="hero-content">
-    <div class="sur">🍽️ Restaurant — Fastfood</div>
-    <h1>Les Délices de <span class="script">Maman Koro</span></h1>
-    <div class="slogan">Le plaisir de vous faire de bons plats <em>à petit prix !</em></div>
-    <p class="desc">Poisson braisé, poulet rôti, pizzas fondantes, tchèp savoureux et bien plus — préparés chaque jour avec amour par Maman Koro.</p>
-    <div class="hero-atouts">
-      <span>🔥 Plats savoureux</span><span>⭐ Qualité garantie</span><span>🛵 Livraison possible</span>
+  <div class="hero-in">
+    <div class="hero-content">
+      <div class="sur">🍽️ Restaurant — Fastfood</div>
+      <h1>Les Délices de <span class="script">Maman Koro</span></h1>
+      <div class="slogan">Le plaisir de vous faire de bons plats <em>à petit prix !</em></div>
+      <p class="desc">Poisson braisé, poulet rôti, pizzas fondantes, tchèp savoureux et bien plus — préparés chaque jour avec amour par Maman Koro.</p>
+      <div class="hero-atouts">
+        <span>🔥 Cuisine maison</span><span>💰 Dès 500 F</span><span>🛵 Livraison possible</span>
+      </div>
+      <div class="hero-btns">
+        <a class="btn btn-rouge" href="#menu">
+          <svg viewBox="0 0 24 24"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM3 2h3l2.6 12.4A2 2 0 0 0 10.6 16h7.9a2 2 0 0 0 2-1.6L22 6H6.2L5.6 3.4A1 1 0 0 0 4.6 2.6H3V2z"/></svg>
+          Voir le Menu
+        </a>
+        <a class="btn btn-vert" href="https://wa.me/2250564572015" target="_blank" rel="noopener">
+          <svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.3 4 14.9c0 2.6.9 5.1 2.5 7.1L4 29l7.2-2.4a12.4 12.4 0 0 0 4.8 1c6.6 0 12-5.3 12-11.9S22.6 3 16 3zm5.3 14.5c-.3-.1-1.7-.8-2-1-.3-.1-.5-.2-.7.1-.2.4-.8 1-.9 1.2-.2.2-.3.2-.6.1a8 8 0 0 1-4-3.5c-.3-.5.3-.5.7-1.6a.6.6 0 0 0 0-.6c-.1-.1-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1.1 1-1.1 2.7s1.1 3.3 1.3 3.5c.2.2 2.2 3.4 5.4 4.7.8.3 1.4.5 1.8.7.8.2 1.5.2 2 .1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.2-.2-.5-.3z"/></svg>
+          Commander sur WhatsApp
+        </a>
+      </div>
+      <p class="hero-tel">Ou appelez le <a href="tel:+2250779696209">07 79 69 62 09</a></p>
     </div>
-    <div class="hero-btns">
-      <a class="btn btn-rouge" href="#menu">
-        <svg viewBox="0 0 24 24"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM3 2h3l2.6 12.4A2 2 0 0 0 10.6 16h7.9a2 2 0 0 0 2-1.6L22 6H6.2L5.6 3.4A1 1 0 0 0 4.6 2.6H3V2z"/></svg>
-        Voir le Menu
-      </a>
-      <a class="btn btn-vert" href="https://wa.me/2250564572015" target="_blank" rel="noopener">
-        <svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.3 4 14.9c0 2.6.9 5.1 2.5 7.1L4 29l7.2-2.4a12.4 12.4 0 0 0 4.8 1c6.6 0 12-5.3 12-11.9S22.6 3 16 3zm5.3 14.5c-.3-.1-1.7-.8-2-1-.3-.1-.5-.2-.7.1-.2.4-.8 1-.9 1.2-.2.2-.3.2-.6.1a8 8 0 0 1-4-3.5c-.3-.5.3-.5.7-1.6a.6.6 0 0 0 0-.6c-.1-.1-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1.1 1-1.1 2.7s1.1 3.3 1.3 3.5c.2.2 2.2 3.4 5.4 4.7.8.3 1.4.5 1.8.7.8.2 1.5.2 2 .1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.2-.2-.5-.3z"/></svg>
-        Commander sur WhatsApp
-      </a>
-    </div>
-    <div class="hero-stats">
-      <div class="hstat"><b><span class="compteur" data-cible="10" data-decimales="0">10</span></b><span>Années en cuisine</span></div>
-      <div class="hstat"><b><span class="compteur" data-cible="30" data-decimales="0">30</span> min</b><span>Délai moyen de livraison</span></div>
-      <div class="hstat"><b><span class="compteur" data-cible="4.5" data-decimales="1">4,5</span></b><span>Note des clients</span></div>
-      <div class="hstat"><b><span class="compteur" data-cible="30" data-decimales="0">30</span>+</b><span>Commandes livrées</span></div>
+    <div class="hero-visuel">
+      <div class="hv-carte" id="hvCarte">
+        <div class="hv-slides" id="hvSlides"></div>
+      </div>
+      <div class="hv-nav">
+        <button class="hv-arrow" id="hvPrec" aria-label="Plat précédent"><svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
+        <div class="hv-dots" id="hvDots"></div>
+        <button class="hv-arrow" id="hvSuiv" aria-label="Plat suivant"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg></button>
+      </div>
     </div>
   </div>
-  <div class="slide-dots" id="slideDots"></div>
+  <div class="hero-stats">
+    <div class="hstat"><b><span class="compteur" data-cible="10" data-decimales="0">10</span></b><span>Années en cuisine</span></div>
+    <div class="hstat"><b><span class="compteur" data-cible="30" data-decimales="0">30</span> min</b><span>Délai moyen de livraison</span></div>
+    <div class="hstat"><b><span class="compteur" data-cible="4.5" data-decimales="1">4,5</span></b><span>Note des clients</span></div>
+    <div class="hstat"><b><span class="compteur" data-cible="30" data-decimales="0">30</span>+</b><span>Commandes livrées</span></div>
+  </div>
   <div class="hero-wave" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,60 480,4 720,20 C960,36 1200,58 1440,26 L1440,60 L0,60 Z"/></svg></div>
 </header>
 
@@ -484,6 +526,7 @@ html.anim .reveal.visible{opacity:1;transform:none}
       <button data-filtre="riz">🍚 Riz &amp; Tchèp</button>
       <button data-filtre="fastfood">🍕 Fastfood</button>
       <button data-filtre="entrees">🥟 Entrées</button>
+      <button data-filtre="douceurs">🧁 Douceurs</button>
     </div>
     <div class="grille" id="grille"></div>
     <div class="aucun" id="aucunResultat">
@@ -637,7 +680,9 @@ const PRODUITS = [
     variantes:[{nom:"Pro Max", prix:null}, {nom:"Frère Sang", prix:null}]},
   {id:"chawarma",      nom:"Chawarma",               prix:null, ancien:null, cat:"fastfood", img:null, ico:"🥙", vedette:false, desc:"Au poulet ou à la viande.",
     variantes:[{nom:"Poulet", suffixe:"poulet", prix:1500}, {nom:"Viande", suffixe:"viande", prix:1500}]},
-  {id:"tacos",         nom:"Tacos",                  prix:3000, ancien:null, cat:"fastfood", img:null, ico:"🌮", vedette:false, desc:"Le tacos de la maison."}
+  {id:"tacos",         nom:"Tacos",                  prix:3000, ancien:null, cat:"fastfood", img:null, ico:"🌮", vedette:false, desc:"Le tacos de la maison."},
+  {id:"douceurs",      nom:"Douceurs",               prix:null, ancien:null, cat:"douceurs", img:null, ico:"🧁", vedette:false, desc:"Gâteaux, cakes et crêpes faits maison, pour finir en douceur.",
+    variantes:[{nom:"Gâteaux", prix:null}, {nom:"Cakes", prix:null}, {nom:"Crêpes", prix:null}]}
 ];
 const parId = id => PRODUITS.find(p => p.id === id);
 const fmt = n => n.toLocaleString("fr-FR").replace(/[\u202f\u00a0]/g, " ") + " FCFA";
@@ -919,25 +964,48 @@ document.getElementById('orderBtn').addEventListener('click', () => {
 });
 majPanier();
 
-/* ---------- Diaporama hero ---------- */
-const SLIDES = ["poissonBraise","pouletRoti","pizza","tchepPoisson","soupeCarpe"];
-const slidesZone = document.getElementById('slides');
-const dotsZone = document.getElementById('slideDots');
+/* ---------- Carte plat vedette du hero : rotation automatique toutes les 3 s ---------- */
+const HV = [
+  {img:"pouletPane",    cat:"POULET",     nom:"Poulet pané",           prix:"Dès 2 000 F"},
+  {img:"tchep",         cat:"RIZ & TCHÈP",nom:"Tchèp maison",          prix:"Dès 1 500 F"},
+  {img:"soupeCarpe",    cat:"POISSON",    nom:"Soupe de poisson",      prix:"Dès 3 000 F"},
+  {img:"pizza",         cat:"PIZZA",      nom:"Pizza Royal",           prix:"4 000 F"},
+  {img:"poissonBraise", cat:"POISSON",    nom:"Poisson braisé au four",prix:"Dès 3 000 F"},
+  {img:"pouletRoti",    cat:"POULET",     nom:"Poulet rôti",           prix:"Dès 3 000 F"}
+];
+const hvZone = document.getElementById('hvSlides');
+const hvDots = document.getElementById('hvDots');
 const reduced = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)").matches : false;
-slidesZone.innerHTML = SLIDES.map((k,i) => `<div class="slide ${i===0 ? "active" : ""}"><img src="${IMG[k]}" alt="" ${i ? 'loading="lazy"' : ""}></div>`).join("");
-dotsZone.innerHTML = SLIDES.map((_,i) => `<button data-slide="${i}" class="${i===0 ? "active" : ""}" aria-label="Photo ${i+1}"></button>`).join("");
-let slideActuel = 0, slideTimer = null;
-function allerSlide(i){
-  slideActuel = (i + SLIDES.length) % SLIDES.length;
-  slidesZone.querySelectorAll('.slide').forEach((s,j) => s.classList.toggle('active', j === slideActuel));
-  dotsZone.querySelectorAll('button').forEach((d,j) => d.classList.toggle('active', j === slideActuel));
+hvZone.innerHTML = HV.map((s,i) => `<div class="hv-slide ${i===0 ? "actif" : ""}">
+    <img src="${IMG[s.img]}" alt="${s.nom}" ${i ? 'loading="lazy"' : ""}>
+    <span class="hv-cat">${s.cat}</span>
+    <div class="hv-infos"><div class="hv-bas">
+      <div><h3>${s.nom}</h3><a class="hv-voir" href="#menu">Voir au menu →</a></div>
+      <span class="hv-prix">${s.prix}</span>
+    </div></div>
+  </div>`).join("");
+hvDots.innerHTML = HV.map((_,i) => `<button data-hv="${i}" class="${i===0 ? "actif" : ""}" aria-label="Plat ${i+1}"></button>`).join("");
+let hvActuel = 0, hvTimer = null;
+function hvAller(i){
+  hvActuel = (i + HV.length) % HV.length;
+  hvZone.querySelectorAll('.hv-slide').forEach((s,j) => s.classList.toggle('actif', j === hvActuel));
+  hvDots.querySelectorAll('button').forEach((d,j) => d.classList.toggle('actif', j === hvActuel));
 }
-dotsZone.addEventListener('click', e => {
-  const b = e.target.closest('[data-slide]'); if (!b) return;
-  allerSlide(+b.dataset.slide);
-  if (!reduced) { clearInterval(slideTimer); slideTimer = setInterval(() => allerSlide(slideActuel+1), 5200); }
+function hvRelancer(){
+  if (reduced) return;
+  clearInterval(hvTimer);
+  hvTimer = setInterval(() => hvAller(hvActuel + 1), 3000);
+}
+document.getElementById('hvPrec').addEventListener('click', () => { hvAller(hvActuel - 1); hvRelancer(); });
+document.getElementById('hvSuiv').addEventListener('click', () => { hvAller(hvActuel + 1); hvRelancer(); });
+hvDots.addEventListener('click', e => {
+  const b = e.target.closest('[data-hv]'); if (!b) return;
+  hvAller(+b.dataset.hv); hvRelancer();
 });
-if (!reduced) slideTimer = setInterval(() => allerSlide(slideActuel+1), 5200);
+const hvCarte = document.getElementById('hvCarte');
+hvCarte.addEventListener('pointerenter', () => clearInterval(hvTimer));
+hvCarte.addEventListener('pointerleave', hvRelancer);
+hvRelancer();
 
 /* ---------- Navigation : menu mobile, bouton Appeler ---------- */
 const navLinks = document.getElementById('navLinks');
