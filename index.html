@@ -213,8 +213,8 @@ section{padding:74px 20px}
 .carte h3{font-size:18.5px;font-weight:800;line-height:1.25}
 .carte .desc{font-size:13.5px;color:var(--texte-doux);margin:6px 0 14px;line-height:1.5;flex:1}
 .prix-ligne{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
-.prix-actuel{font-size:19px;font-weight:600;color:var(--rouge)}
-.prix-barre{font-size:14px;color:#b39d7d;text-decoration:line-through;font-weight:600}
+.prix-actuel{font-size:19px;font-weight:500;color:var(--rouge)}
+.prix-barre{font-size:14px;color:var(--texte-doux);text-decoration:line-through;font-weight:500}
 .prix-demande{font-size:15.5px;font-weight:700;color:var(--texte-doux);font-style:italic}
 .btn-ajout{background:var(--rouge);color:#fff;border:none;padding:12px 18px;border-radius:999px;font-weight:700;font-size:14.5px;
   display:flex;align-items:center;justify-content:center;gap:8px;transition:.25s;width:100%}
@@ -850,7 +850,9 @@ if (window.IntersectionObserver && !reduced) {
 </script>
 <script>
 /* Filet de sécurité : ne jamais laisser de contenu invisible */
-setTimeout(function(){document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('visible')});},3000);
+setTimeout(function(){document.querySelectorAll('.reveal:not(.visible)').forEach(function(e){
+    if (e.getBoundingClientRect().top < window.innerHeight * 1.2) e.classList.add('visible');
+  });},3000);
 </script>
 </body>
 </html>
