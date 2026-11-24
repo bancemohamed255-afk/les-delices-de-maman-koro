@@ -148,6 +148,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,12,38,.94)
 .hero-atouts span{background:rgba(255,255,255,.1);border:1px solid rgba(251,94,138,.5);padding:8px 15px;border-radius:999px;font-size:13.5px;font-weight:600}
 .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .hero-btns .btn{padding:15px 27px;font-size:15.5px}
+.hero-stats{display:flex;flex-wrap:wrap;justify-content:center;background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border-radius:20px;padding:16px 8px;margin-top:32px}
+.hstat{flex:1 1 118px;text-align:center;padding:4px 8px}
+.hstat b{display:block;font-size:26px;font-weight:800;color:#fff;line-height:1.15}
+.hstat>span{font-size:10.5px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:var(--or2)}
+@media(min-width:641px){.hstat + .hstat{border-left:1px solid rgba(255,255,255,.16)}}
 .slide-dots{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:4;display:flex;gap:9px}
 .slide-dots button{width:11px;height:11px;border-radius:50%;border:2px solid rgba(255,255,255,.75);background:transparent;padding:0;transition:.3s}
 .slide-dots button.active{background:var(--or);border-color:var(--or);transform:scale(1.25)}
@@ -206,7 +213,7 @@ section{padding:74px 20px}
 .carte h3{font-size:18.5px;font-weight:800;line-height:1.25}
 .carte .desc{font-size:13.5px;color:var(--texte-doux);margin:6px 0 14px;line-height:1.5;flex:1}
 .prix-ligne{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
-.prix-actuel{font-size:20px;font-weight:900;color:var(--rouge)}
+.prix-actuel{font-size:19px;font-weight:600;color:var(--rouge)}
 .prix-barre{font-size:14px;color:#b39d7d;text-decoration:line-through;font-weight:600}
 .prix-demande{font-size:15.5px;font-weight:700;color:var(--texte-doux);font-style:italic}
 .btn-ajout{background:var(--rouge);color:#fff;border:none;padding:12px 18px;border-radius:999px;font-weight:700;font-size:14.5px;
@@ -415,6 +422,12 @@ html.anim .reveal.visible{opacity:1;transform:none}
         Commander sur WhatsApp
       </a>
     </div>
+    <div class="hero-stats">
+      <div class="hstat"><b><span class="compteur" data-cible="10" data-decimales="0">10</span></b><span>Années en cuisine</span></div>
+      <div class="hstat"><b><span class="compteur" data-cible="30" data-decimales="0">30</span> min</b><span>Délai moyen de livraison</span></div>
+      <div class="hstat"><b><span class="compteur" data-cible="4.5" data-decimales="1">4,5</span></b><span>Note des clients</span></div>
+      <div class="hstat"><b><span class="compteur" data-cible="30" data-decimales="0">30</span>+</b><span>Commandes livrées</span></div>
+    </div>
   </div>
   <div class="slide-dots" id="slideDots"></div>
   <div class="hero-wave" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,32 C240,60 480,4 720,20 C960,36 1200,58 1440,26 L1440,60 L0,60 Z"/></svg></div>
@@ -582,9 +595,9 @@ const aucun = document.getElementById('aucunResultat');
 const favoris = new Set();
 let filtreActif = "tous", recherche = "";
 
-function carteHTML(p){
+function carteHTML(p, i){
   const promo = (p.ancien && p.prix) ? Math.round((1 - p.prix/p.ancien) * 100) : 0;
-  return `<article class="carte" data-id="${p.id}">
+  return `<article class="carte reveal" style="transition-delay:${Math.min(i || 0, 8) * 70}ms" data-id="${p.id}">
     <div class="photo">
       <img src="${IMG[p.img]}" alt="${p.nom}" loading="lazy">
       ${promo ? `<span class="badge-promo">-${promo}%</span>` : ""}
@@ -613,6 +626,10 @@ function afficher(){
     return okFiltre && okRecherche;
   });
   grille.innerHTML = liste.map(carteHTML).join("");
+  grille.querySelectorAll('.carte').forEach(c => {
+    if (window.__obsCartes) window.__obsCartes.observe(c);
+    else c.classList.add('visible');
+  });
   aucun.style.display = liste.length ? "none" : "block";
   const info = document.getElementById('searchInfo');
   if (q) info.textContent = liste.length ? `${liste.length} plat(s) trouvé(s) pour « ${recherche} »` : `Aucun plat trouvé pour « ${recherche} »`;
@@ -799,12 +816,33 @@ callBtn.addEventListener('click', e => {
 });
 document.addEventListener('click', e => { if (!e.target.closest('.call-wrap')) callMenu.classList.remove('open'); });
 
+/* ---------- Compteurs animés du hero ---------- */
+const compteurs = document.querySelectorAll('.compteur');
+function lancerCompteur(el){
+  const cible = parseFloat(el.dataset.cible), dec = parseInt(el.dataset.decimales || '0', 10);
+  const duree = 1500, t0 = performance.now();
+  function pas(t){
+    const p = Math.min((t - t0) / duree, 1);
+    const v = cible * (1 - Math.pow(1 - p, 3));
+    el.textContent = v.toFixed(dec).replace('.', ',');
+    if (p < 1) requestAnimationFrame(pas);
+  }
+  requestAnimationFrame(pas);
+}
+if (window.IntersectionObserver && !reduced && compteurs.length) {
+  const obsC = new IntersectionObserver(es => es.forEach(en => {
+    if (en.isIntersecting) { lancerCompteur(en.target); obsC.unobserve(en.target); }
+  }), {threshold:.4});
+  compteurs.forEach(el => { el.textContent = '0'; obsC.observe(el); });
+}
+
 /* ---------- Animations d'apparition (IntersectionObserver) ---------- */
 const reveals = document.querySelectorAll('.reveal');
 if (window.IntersectionObserver && !reduced) {
   const obs = new IntersectionObserver(es => es.forEach(en => {
     if (en.isIntersecting) { en.target.classList.add('visible'); obs.unobserve(en.target); }
   }), {threshold:.1});
+  window.__obsCartes = obs;
   reveals.forEach(el => obs.observe(el));
 } else {
   reveals.forEach(el => el.classList.add('visible'));
