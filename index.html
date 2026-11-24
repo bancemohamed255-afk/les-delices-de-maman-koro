@@ -332,6 +332,10 @@ footer b{color:var(--or)}
 .cart-liens a{font-size:13.5px;font-weight:600;color:var(--texte-doux)}
 .vider-btn{background:none;border:none;font-size:13.5px;font-weight:600;color:var(--texte-doux);cursor:pointer;font-family:inherit;padding:0}
 .vider-btn:hover{color:var(--rouge)}
+.vider-confirm{font-size:13.5px;font-weight:600;color:var(--texte)}
+.vider-confirm button{border:none;border-radius:999px;padding:5px 13px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;margin-left:5px}
+.vider-oui{background:var(--rouge);color:#fff}
+.vider-non{background:var(--puce);color:var(--texte)}
 .cart-vide .btn{margin-top:14px}
 
 /* Toast */
@@ -591,6 +595,7 @@ html.anim .reveal.visible{opacity:1;transform:none}
     <div class="cart-liens">
       <a href="tel:+2250779696209">📞 Préférer appeler</a>
       <button class="vider-btn" id="viderBtn">🗑 Vider le panier</button>
+      <span class="vider-confirm" id="viderConfirm" style="display:none">Vider le panier ?<button class="vider-oui" id="viderOui">Oui</button><button class="vider-non" id="viderNon">Non</button></span>
     </div>
   </div>
 </aside>
@@ -843,8 +848,9 @@ function majPanier(){
   }
   document.getElementById('cartTotal').textContent = fmt(totalPrix());
   document.getElementById('orderBtn').disabled = !n;
-  document.getElementById('retraitBloc').style.display = n ? "" : "none";
+  document.getElementById('viderConfirm').style.display = "none";
   document.getElementById('viderBtn').style.display = n ? "" : "none";
+  document.getElementById('retraitBloc').style.display = n ? "" : "none";
   document.querySelector('.cart-note').textContent = aSurDemande()
     ? "Certains articles sont à prix sur demande : leur prix sera confirmé sur WhatsApp. Hors frais de livraison."
     : "Hors frais de livraison. Le total définitif vous sera confirmé sur WhatsApp.";
@@ -881,7 +887,17 @@ function ajouterAuPanier(id){
 
 document.getElementById('viderBtn').addEventListener('click', () => {
   if (!totalArticles()) return;
-  if (confirm("Vider le panier ?")) { panier = {}; majPanier(); showToast("Panier vidé"); }
+  document.getElementById('viderBtn').style.display = "none";
+  document.getElementById('viderConfirm').style.display = "";
+});
+document.getElementById('viderNon').addEventListener('click', () => {
+  document.getElementById('viderConfirm').style.display = "none";
+  document.getElementById('viderBtn').style.display = "";
+});
+document.getElementById('viderOui').addEventListener('click', () => {
+  panier = {};
+  majPanier();
+  showToast("Panier vidé");
 });
 
 /* Commande WhatsApp : message généré avec les infos du formulaire, aucune fausse confirmation */
