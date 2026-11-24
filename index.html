@@ -628,7 +628,8 @@ function afficher(){
   grille.innerHTML = liste.map(carteHTML).join("");
   grille.querySelectorAll('.carte').forEach(c => {
     if (window.__obsCartes) window.__obsCartes.observe(c);
-    else c.classList.add('visible');
+    else if (!window.IntersectionObserver || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) c.classList.add('visible');
+    /* sinon : l'observateur configuré plus bas dans le script les prendra en charge */
   });
   aucun.style.display = liste.length ? "none" : "block";
   const info = document.getElementById('searchInfo');
