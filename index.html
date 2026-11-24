@@ -76,9 +76,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(18,11,6,.94)
 .call-menu a:hover{background:var(--survol);color:var(--rouge2)}
 .call-menu a svg{width:17px;height:17px;fill:var(--rouge)}
 .burger-btn{display:none}
+.panel-actions{display:none}
 .nav-overlay{position:fixed;inset:0;background:rgba(10,5,2,.55);z-index:195;opacity:0;pointer-events:none;transition:opacity .3s}
 .nav-overlay.open{opacity:1;pointer-events:auto}
 @media(max-width:1020px){ .btn-nav .lbl{display:none} .btn-nav{padding:10px 13px} }
+@media(hover:none){.icon-btn:hover{background:rgba(255,255,255,.08);transform:none}}
+@media(max-width:380px){
+  .icon-btn{width:36px;height:36px}
+  .logo-img{width:34px;height:34px}
+  .logo .l2{font-size:20px}
+  .nav-in{gap:5px;padding:9px 10px}
+}
 @media(max-width:820px){
   .nav-links{position:fixed;top:0;left:0;bottom:0;height:100dvh;width:min(80vw,300px);background:rgba(18,11,6,.99);
     flex-direction:column;padding:96px 24px 24px;gap:4px;display:flex;transform:translateX(-106%);
@@ -87,6 +95,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(18,11,6,.94)
   .nav-links.open{transform:none}
   .nav-links a{padding:13px 6px;font-size:17px;border-bottom:1px solid rgba(245,185,33,.16)}
   .nav-actions .call-wrap{display:none}
+  .logo .l1{display:none}
+  .logo .l2{font-size:23px}
+  .panel-actions{display:flex;flex-direction:column;gap:10px;margin-top:16px;padding-top:18px;border-top:1px solid rgba(245,185,33,.25)}
+  .panel-actions .btn{justify-content:center;padding:13px 16px;font-size:14.5px}
   .burger-btn{display:flex}
   .nav-in{gap:8px;padding:9px 12px}
   .logo{gap:8px}
@@ -101,7 +113,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(18,11,6,.94)
 }
 
 /* ============ BARRE DE RECHERCHE ============ */
-.search-bar{position:fixed;top:0;left:0;right:0;z-index:190;background:var(--surface);box-shadow:0 14px 34px rgba(0,0,0,.22);
+.search-bar{position:fixed;top:0;left:0;right:0;z-index:190;background:transparent;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);box-shadow:none;
   transform:translateY(-110%);transition:transform .38s ease;padding:76px 18px 16px}
 .search-bar.open{transform:none}
 .search-in{max-width:760px;margin:0 auto;display:flex;align-items:center;gap:10px;background:var(--fond);
@@ -111,7 +123,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(18,11,6,.94)
 .search-in input:focus{outline:none}
 .search-close{background:var(--rouge);color:#fff;border:none;width:40px;height:40px;border-radius:50%;font-size:18px;flex:none;transition:.2s}
 .search-close:hover{background:var(--rouge2)}
-.search-info{max-width:760px;margin:10px auto 0;font-size:13.5px;color:var(--texte-doux);text-align:center;min-height:18px}
+.search-info{max-width:760px;margin:10px auto 0;font-size:13.5px;color:#f5ead8;text-shadow:0 1px 6px rgba(0,0,0,.65);text-align:center;min-height:18px}
 
 /* ============ HERO / DIAPORAMA ============ */
 .hero{position:relative;min-height:94vh;display:flex;align-items:center;justify-content:center;text-align:center;
@@ -326,6 +338,11 @@ html.anim .reveal.visible{opacity:1;transform:none}
       <a href="#apropos">À propos</a>
       <a href="#livraison">Livraison</a>
       <a href="#contact">Contact</a>
+      <div class="panel-actions">
+        <a class="btn btn-rouge" href="tel:+2250779696209">📞 Appeler : 07 79 69 62 09</a>
+        <a class="btn btn-rouge" href="tel:+2250719671836">📞 Appeler : 07 19 67 18 36</a>
+        <a class="btn btn-vert" href="https://wa.me/2250564572015" target="_blank" rel="noopener">💬 Commander sur WhatsApp</a>
+      </div>
     </div>
     <div class="nav-actions">
       <button class="icon-btn" id="themeBtn" aria-label="Basculer entre le mode clair et le mode sombre" title="Mode clair / sombre">
