@@ -142,7 +142,7 @@ nav.defile{background:rgba(6,10,36,.96);backdrop-filter:blur(12px);border-bottom
 .hero h1 .ligne1{display:block;font-family:'Dancing Script',cursive;font-weight:700;font-size:clamp(36px,5.2vw,56px);color:#fff}
 .hero h1 .ligne2{display:inline-block;position:relative;font-family:'Dancing Script',cursive;font-weight:700;
   font-size:clamp(58px,9.5vw,96px);line-height:1.05;padding-bottom:.14em;
-  background:linear-gradient(92deg,#ffe259,#ffa751);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  background:linear-gradient(110deg,#ffe259 25%,#fff7cf 50%,#ffa751 75%,#ffe259 100%);background-size:220% 100%;animation:scintille 6s linear infinite;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .hero h1 .ligne2::after{content:"";position:absolute;left:1%;right:1%;bottom:0;height:.15em;
   background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 12" preserveAspectRatio="none"><path d="M2 9 Q 30 3 55 6 T 98 5" fill="none" stroke="%23f43f5e" stroke-width="3.2" stroke-linecap="round"/></svg>') no-repeat center/100% 100%}
 .hero .slogan{font-size:clamp(19px,2.6vw,24px);font-weight:700;margin:10px 0 14px;max-width:470px;line-height:1.38}
@@ -400,6 +400,23 @@ html.anim .reveal.visible{opacity:1;transform:none}
 .hero-content > *:nth-child(2){animation-delay:.12s}.hero-content > *:nth-child(3){animation-delay:.24s}
 .hero-content > *:nth-child(4){animation-delay:.36s}.hero-content > *:nth-child(5){animation-delay:.48s}
 .hero-content > *:nth-child(6){animation-delay:.6s}
+
+/* ---------- Motion design : finitions pro ---------- */
+.btn,.btn-ajout{position:relative;overflow:hidden}
+.btn::after,.btn-ajout::after{content:"";position:absolute;top:0;left:-90%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-20deg);transition:left .55s ease;pointer-events:none}
+.btn:hover::after,.btn-ajout:hover::after{left:140%}
+.btn:active{transform:scale(.97)}
+.btn-ajout{transition:background .3s ease,transform .15s ease}
+.btn-ajout:active{transform:scale(.95)}
+.btn-ajout.ajoute{background:#1d9e50}
+@keyframes scintille{0%{background-position:0% 50%}100%{background-position:220% 50%}}
+@keyframes bandeDefile{0%{background-position:0% 50%}100%{background-position:250% 50%}}
+.cart-liv{margin:14px 19px 0;padding:12px 14px;border-radius:14px;color:#fff;font-size:14.5px;font-weight:600;text-align:center;background:linear-gradient(110deg,#131a3d,#3b2a6d,#f43f5e,#3b2a6d,#131a3d);background-size:250% 100%;animation:bandeDefile 7s linear infinite}
+.cart-liv strong{color:#ffd166;font-weight:800}
+.hv-slide.actif img{animation:kenburns 3.6s ease-out forwards}
+@keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.09)}}
+@keyframes waPulse{0%{box-shadow:0 6px 22px rgba(20,160,80,.45),0 0 0 0 rgba(37,211,102,.5)}100%{box-shadow:0 6px 22px rgba(20,160,80,.45),0 0 0 18px rgba(37,211,102,0)}}
+.wa-float{animation:waPulse 2.2s ease-out infinite}
 
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
@@ -702,11 +719,11 @@ body.charge.pret .hero .anim{animation-delay:var(--d,0s)}
     <div class="liv-grid">
       <div class="liv-etapes">
         <div class="etape reveal"><span class="etape-num">1</span><div><h3>Choisissez vos plats</h3><p>Ajoutez-les au panier depuis le menu, avec les quantités souhaitées.</p></div></div>
-        <div class="etape reveal"><span class="etape-num">2</span><div><h3>Envoyez sur WhatsApp</h3><p>Votre commande est rédigée automatiquement : il ne reste qu'à l'envoyer au 05 64 57 20 15.</p></div></div>
-        <div class="etape reveal"><span class="etape-num">3</span><div><h3>Régalez-vous</h3><p>Nous confirmons votre commande, le prix final et le délai, puis nous préparons tout avec soin.</p></div></div>
+        <div class="etape reveal" style="transition-delay:120ms"><span class="etape-num">2</span><div><h3>Envoyez sur WhatsApp</h3><p>Votre commande est rédigée automatiquement : il ne reste qu'à l'envoyer au 05 64 57 20 15.</p></div></div>
+        <div class="etape reveal" style="transition-delay:240ms"><span class="etape-num">3</span><div><h3>Régalez-vous</h3><p>Nous confirmons votre commande, le prix final et le délai, puis nous préparons tout avec soin.</p></div></div>
         <div class="liv-infos reveal">
           <div class="liv-info"><h4>📍 Zones de livraison</h4><p>Abidjan — précisez votre quartier dans la commande.</p></div>
-          <div class="liv-info"><h4>🛵 Frais de livraison</h4><p>Communiqués à la confirmation de la commande.</p></div>
+          <div class="liv-info"><h4>🛵 Frais de livraison</h4><p><strong>Gratuite partout à Koumassi !</strong> Pour les autres quartiers, communiqués à la confirmation de la commande.</p></div>
         </div>
       </div>
       <div class="liv-photo reveal">
@@ -728,7 +745,7 @@ body.charge.pret .hero .anim{animation-delay:var(--d,0s)}
       <p>Appelez-nous ou écrivez-nous sur WhatsApp, nous prenons votre commande.</p>
     </div>
     <div class="c-grille">
-      <div class="c-carte reveal">
+      <div class="c-carte reveal" style="transition-delay:0ms">
         <span class="c-ico">📞</span>
         <h3>Par téléphone</h3>
         <p class="c-sous">Appels uniquement</p>
@@ -737,7 +754,7 @@ body.charge.pret .hero .anim{animation-delay:var(--d,0s)}
           <a class="c-btn contour" href="tel:+2250719671836">📞 07 19 67 18 36</a>
         </div>
       </div>
-      <div class="c-carte reveal">
+      <div class="c-carte reveal" style="transition-delay:80ms">
         <span class="c-ico">💬</span>
         <h3>Sur WhatsApp</h3>
         <p class="c-sous">Messages uniquement</p>
@@ -746,7 +763,7 @@ body.charge.pret .hero .anim{animation-delay:var(--d,0s)}
           <button class="c-btn contour" type="button" onclick="ouvrirPanier()">🛒 Voir mon panier</button>
         </div>
       </div>
-      <div class="c-carte reveal">
+      <div class="c-carte reveal" style="transition-delay:160ms">
         <span class="c-ico">📍</span>
         <h3>Adresse</h3>
         <p class="c-texte">Abidjan, Côte d’Ivoire<br>Code Google Maps : 8335+56V</p>
@@ -754,12 +771,12 @@ body.charge.pret .hero .anim{animation-delay:var(--d,0s)}
           <a class="c-btn contour" href="https://www.google.com/maps/search/?api=1&query=8335%2B56V+Abidjan" target="_blank" rel="noopener">🗺️ Voir sur Google Maps</a>
         </div>
       </div>
-      <div class="c-carte reveal">
+      <div class="c-carte reveal" style="transition-delay:240ms">
         <span class="c-ico">🕐</span>
         <h3>Horaires</h3>
         <p class="c-texte">Ouvert 24 h/24 — 7j/7.<br>Commandez à toute heure !</p>
       </div>
-      <div class="c-carte reveal">
+      <div class="c-carte reveal" style="transition-delay:320ms">
         <span class="c-ico">💳</span>
         <h3>Paiement</h3>
         <p class="c-texte">Les moyens de paiement acceptés vous sont confirmés lors de la commande.</p>
@@ -786,6 +803,7 @@ body.charge.pret .hero .anim{animation-delay:var(--d,0s)}
     <h3>🛒 Mon panier <span id="cartHeadCount"></span></h3>
     <button class="cart-close" id="cartClose" aria-label="Fermer le panier">✕</button>
   </div>
+  <div class="cart-liv">🛵 Livraison <strong>GRATUITE</strong> partout à <strong>Koumassi</strong> !</div>
   <div class="cart-items" id="cartItems"></div>
   <div class="cart-foot">
     <div id="retraitBloc">
@@ -953,7 +971,7 @@ grille.addEventListener('click', e => {
     return;
   }
   const ajout = e.target.closest('[data-ajout]');
-  if (ajout) { ajouterAuPanier(ajout.dataset.ajout); return; }
+  if (ajout) { ajouterAuPanier(ajout.dataset.ajout); retourAjout(ajout); return; }
   const fav = e.target.closest('[data-fav]');
   if (fav) {
     const id = fav.dataset.fav;
@@ -1092,6 +1110,13 @@ function showToast(msg){
   t.classList.add('show');
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
+}
+function retourAjout(btn){
+  if (btn.classList.contains('ajoute')) return;
+  const avant = btn.innerHTML;
+  btn.classList.add('ajoute');
+  btn.innerHTML = "✓ Ajouté !";
+  setTimeout(() => { btn.classList.remove('ajoute'); btn.innerHTML = avant; }, 1200);
 }
 function ajouterAuPanier(id){
   const p = parId(id);
